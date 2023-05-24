@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Users Update</title>
+
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+  <hr>
+  <h2>Update</h2>
+
+  <form th:action="@{/update/{id}}" th:object="${allusers}" method="POST">
+
+    <input type="text" th:field="*{id}"   class="form-control mb-4 col-4" readonly/>
+    <input type="text" th:field="*{fname}" class="form-control mb-4 col-4">
+
+    <input type="text" th:field="*{lname}" class="form-control mb-4 col-4">
+
+    <input type="text" th:field="*{telephone}" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{parish}" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{password}" class="form-control mb-4 col-4">
+
+    <button type="submit" class="btn col-2"> Update Users </button>
+  </form>
+
+  <hr>
+
+</div>
+</body>
+</html>

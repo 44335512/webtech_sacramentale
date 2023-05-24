@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+body {
+  background-image: url('marriage.JPG');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+
+</head>
+<body>
+
+<h1>View Form</h1>
+
+<table id="customers">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Telephone</th>
+    <th>Parish Name</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Edit</th>
+                <th>Delete</th>
+  </tr>
+  <tbody>
+            <tr th:each="alluser: ${displayAll}">
+                <td th:text="${alluser.fname}"/>
+                <td th:text="${alluser.lname}"/>
+                <td th:text="${alluser.telephone}"/>
+                 <td th:text="${alluser.parish}"/>
+                <td th:text="${alluser.email}"/>
+                <td th:text="${alluser.password}"/>
+                <td><a th:href="@{/edit/{id}(id=${alluser.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${alluser.id})}">Delete</a></td>
+
+            </tr>
+            </tbody>
+ 
+</table>
+<div th:if="${totalPages > 1}">
+    <div  class="row col-sm-10">
+        <div class="col-sm-2">
+            Total Row: [[${totalItems}]]
+        </div>
+        <div class="col-sm-1">
+                <span th:each="i :${#numbers.sequence(1,totalPages)}">
+                    <a th:if="${currentPage !=i}" th:href="@{'/page/' +${i}}">[[${i}]]</a>
+                    <span th:unless="${currentPage !=i}">[[${i}]]</span> &nbsp;&nbsp;
+                </span>
+        </div>
+        <div class="col-sm-1">
+            <a th:if="${currentPage < totalPages}" th:href="@{'/page/' +${currentPage +1}}">Next</a>
+            <span th:unless="${currentPage < totalPages}">Next</span>
+        </div>
+        <div class="col-sm-1">
+            <a th:if="${currentPage < totalPages}" th:href="@{'/page/' +${currentPage}}">Last</a>
+            <span th:unless="${currentPage < totalPages}">Last</span>
+        </div>
+        </div>
+        </div>
+
+</body>
+</html>
+
+
+
